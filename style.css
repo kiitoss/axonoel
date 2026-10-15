@@ -207,6 +207,8 @@ main { position: relative; z-index: 3; max-width: 1180px; margin: 0 auto; paddin
   text-align: center; color: var(--muted);
   padding: 8px 16px 40px; font-size: .9rem;
 }
+.version { margin: 4px 0 0; font-size: .75rem; opacity: .6; font-variant-numeric: tabular-nums; }
+
 .install {
   font: inherit; font-weight: 700;
   color: #fff; background: var(--violet-500);

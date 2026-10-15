@@ -19,8 +19,7 @@ Page d'accueil statique (PWA) qui liste les petits jeux de Noël Axopen. Aucun b
 
 `tag` est optionnel. Une image manquante est remplacée par `images/placeholder.svg`.
 
-Pas besoin de toucher au service worker : `games.js` et les pages sont servis « réseau d'abord », les images en « stale-while-revalidate ».
-Si tu modifies `index.html`, `style.css` ou `app.js`, incrémente `CACHE` dans `sw.js` (`axonoel-v2`, …) pour forcer la mise à jour chez ceux qui ont installé l'app.
+Pas besoin de toucher au service worker : son cache est nommé d'après le tag déployé, donc chaque nouvelle version invalide l'ancienne chez ceux qui ont installé l'app.
 
 ## Tester en local
 
@@ -28,7 +27,18 @@ Ouvrir `index.html` directement dans le navigateur. Seule la partie PWA (install
 
 ## Déployer
 
-Pousser le dossier tel quel sur GitHub Pages / GitLab Pages. Tous les chemins sont relatifs, la page fonctionne aussi sous un sous-chemin (`/axonoel/`). HTTPS est requis pour l'installation PWA (fourni par Pages).
+Le déploiement sur GitHub Pages se fait en poussant un tag `v*` :
+
+```sh
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+Le workflow `.github/workflows/deploy.yml` remplace `dev` par le nom du tag dans le pied de page (`Version v1.0.0`) et dans le nom du cache du service worker, puis publie le dossier sur Pages.
+
+Prérequis (une seule fois) : *Settings → Pages → Build and deployment → Source : **GitHub Actions***.
+
+Tous les chemins sont relatifs, la page fonctionne donc sous le sous-chemin `/axonoel/`.
 
 ## Charte
 

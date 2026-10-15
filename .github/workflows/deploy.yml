@@ -1,0 +1,41 @@
+name: Déploiement GitHub Pages
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Injecter la version
+        env:
+          VERSION: ${{ github.ref_name }}
+        run: |
+          sed -i "s|<span id=\"version\">dev</span>|<span id=\"version\">${VERSION}</span>|" index.html
+          sed -i "s|const CACHE = \"axonoel-dev\";|const CACHE = \"axonoel-${VERSION}\";|" sw.js
+          grep -q "id=\"version\">${VERSION}<" index.html
+          grep -q "axonoel-${VERSION}" sw.js
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

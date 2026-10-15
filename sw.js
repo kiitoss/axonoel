@@ -1,5 +1,5 @@
-// Incrémenter à chaque déploiement qui modifie l'app shell.
-const CACHE = "axonoel-v4";
+// "dev" est remplacé par le tag Git au déploiement (.github/workflows/deploy.yml).
+const CACHE = "axonoel-dev";
 
 const SHELL = [
   "./",
