@@ -28,9 +28,17 @@
 
   function renderCard(game, index) {
     const node = tpl.content.firstElementChild.cloneNode(true);
-    node.href = game.url;
     node.style.setProperty("--i", index);
-    node.setAttribute("aria-label", `Jouer à ${game.title}`);
+    if (game.soon) {
+      // Pas de href : la carte n'est ni cliquable ni focusable.
+      node.classList.add("card--soon");
+      node.setAttribute("aria-label", `${game.title} — bientôt disponible`);
+      node.querySelector(".thumb").insertAdjacentHTML("beforeend", '<span class="soon">Bientôt disponible</span>');
+      node.querySelector(".play").remove();
+    } else {
+      node.href = game.url;
+      node.setAttribute("aria-label", `Jouer à ${game.title}`);
+    }
 
     const img = node.querySelector("img");
     img.src = game.image || PLACEHOLDER;
@@ -39,7 +47,7 @@
     node.querySelector("h2").textContent = game.title;
     node.querySelector("p").textContent = game.description || "";
 
-    if (game.tag) {
+    if (game.tag && !game.soon) {
       const tag = node.querySelector(".tag");
       tag.textContent = game.tag;
       tag.hidden = false;

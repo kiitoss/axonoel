@@ -1,22 +1,25 @@
 // Liste des jeux affichés sur la page d'accueil. "tag" est optionnel.
+// "soon: true" affiche le jeu grisé, non cliquable, avec « Bientôt disponible ».
 window.GAMES = [
   {
-    "title": "Calendrier de l'Avent",
-    "description": "Une case par jour, une surprise à chaque fois.",
-    "image": "images/placeholder.svg",
-    "url": "https://example.com/avent/",
-    "tag": "Nouveau"
+    title: "Rise",
+    description: "Construire la plus haute tour de l'AxoVillage",
+    image: "images/rise.png",
+    url: "https://rise.axopen.cloud/",
+    tag: "Nouveau",
   },
   {
-    "title": "Quiz des lutins",
-    "description": "Teste ta culture de Noël contre tes collègues.",
-    "image": "images/placeholder.svg",
-    "url": "https://example.com/quiz/"
+    title: "AxoClicker",
+    description: "Clique. Clique. Clique. C'est le bruit de la production qui augmente.",
+    image: "images/axoclicker.png",
+    url: "https://www.axopen.com/",
+    soon: true,
   },
   {
-    "title": "Attrape les cadeaux",
-    "description": "Aide le traîneau à rattraper un maximum de paquets.",
-    "image": "images/placeholder.svg",
-    "url": "https://example.com/cadeaux/"
-  }
+    title: "AxoMaster",
+    description: "Le premier booster est offert.",
+    image: "images/axomaster.png",
+    url: "https://axomaster.axopen.cloud/",
+    tag: "Nouveau",
+  },
 ];

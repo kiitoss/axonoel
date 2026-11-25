@@ -134,11 +134,11 @@ body {
 @keyframes shimmer { to { background-position: 300% 0; } }
 
 /* ---------- Grille ---------- */
-main { position: relative; z-index: 3; max-width: 1180px; margin: 0 auto; padding: 0 16px 48px; }
+main { position: relative; z-index: 3; max-width: 1180px; margin: 0 auto; padding: 0 16px 24px; }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 340px));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), min(300px, 30vh)));
   justify-content: center;
   gap: 24px;
 }
@@ -167,7 +167,7 @@ main { position: relative; z-index: 3; max-width: 1180px; margin: 0 auto; paddin
 
 .thumb {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 1 / 1;
   background: linear-gradient(135deg, var(--violet-700), var(--night-2));
   overflow: hidden;
 }
@@ -199,14 +199,37 @@ main { position: relative; z-index: 3; max-width: 1180px; margin: 0 auto; paddin
 }
 .card:hover .play span { display: inline-block; transform: translateX(3px); transition: transform .2s; }
 
+/* Jeu « Bientôt disponible » : grisé, non cliquable, bandeau par-dessus l'image. */
+.card--soon {
+  cursor: default;
+  background: rgba(120, 120, 130, .18);
+  border-color: rgba(160, 160, 170, .25);
+}
+.card--soon:hover { transform: none; border-color: rgba(160, 160, 170, .25); box-shadow: none; }
+.card--soon .thumb { background: #3a3a40; }
+.card--soon .thumb img { filter: grayscale(1) brightness(.5); }
+.card--soon:hover .thumb img { transform: none; }
+.card--soon .body h2, .card--soon .body p { color: rgba(220, 220, 225, .55); }
+.soon {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 8px 18px;
+  font-weight: 800; font-size: 1rem; letter-spacing: .02em; white-space: nowrap;
+  color: #fff; background: rgba(20, 20, 25, .75);
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 999px;
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
+
 .empty { text-align: center; color: var(--muted); }
 
 /* ---------- Pied de page ---------- */
 .footer {
   position: relative; z-index: 3;
   text-align: center; color: var(--muted);
-  padding: 8px 16px 40px; font-size: .9rem;
+  padding: 0 16px 12px; font-size: .9rem;
 }
+.footer p:not(.version) { margin: 0; }
 .version { margin: 4px 0 0; font-size: .75rem; opacity: .6; font-variant-numeric: tabular-nums; }
 
 .install {
