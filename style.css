@@ -232,7 +232,9 @@ main { position: relative; z-index: 3; max-width: 1180px; margin: 0 auto; paddin
 .footer p:not(.version) { margin: 0; }
 .version { margin: 4px 0 0; font-size: .75rem; opacity: .6; font-variant-numeric: tabular-nums; }
 
+/* Flottant : n'apparaît qu'en prod (beforeinstallprompt) et ne doit pas allonger la page. */
 .install {
+  position: fixed; right: 16px; bottom: 16px; z-index: 4;
   font: inherit; font-weight: 700;
   color: #fff; background: var(--violet-500);
   border: 0; border-radius: 999px;
