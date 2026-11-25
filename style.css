@@ -114,7 +114,7 @@ body {
 .hero {
   position: relative; z-index: 3;
   text-align: center;
-  padding: 24px 16px 40px;
+  padding: 24px 16px 24px;
 }
 .logo { width: clamp(140px, 22vw, 220px); height: auto; opacity: .95; }
 .hero h1 {
@@ -137,8 +137,11 @@ body {
 main { position: relative; z-index: 3; max-width: 1180px; margin: 0 auto; padding: 0 16px 24px; }
 
 .grid {
+  /* Vignettes carrées : la largeur (= hauteur de l'image) se réduit avec la hauteur d'écran
+     pour que la page tienne sans scroll. 500px ≈ guirlande + en-tête + texte des cartes + pied. */
+  --card-w: clamp(170px, calc(100vh - 484px), 300px);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), min(300px, 30vh)));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-w)), var(--card-w)));
   justify-content: center;
   gap: 24px;
 }
